@@ -1,0 +1,251 @@
+/* Basic Reset & Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden; /* Clear floats */
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    border-bottom: 3px solid #77aaff;
+}
+
+header h1 {
+    float: left;
+    margin: 0;
+}
+
+header nav {
+    float: right;
+}
+
+header ul {
+    list-style: none;
+}
+
+header li {
+    display: inline;
+    padding: 0 15px;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header a:hover {
+    color: #77aaff;
+}
+
+/* Hero Section */
+#hero {
+    background: #5cb85c; /* Green color for positive feel */
+    color: #fff;
+    text-align: center;
+    padding: 60px 0;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
+
+#hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+#hero button {
+    background: #fff;
+    color: #5cb85c;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.3s ease;
+}
+
+#hero button:hover {
+    background: #eee;
+}
+
+/* Section Styling */
+.form-section, .items-display-section {
+    background: #fff;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #007bff; /* Blue for primary actions */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background: #0056b3;
+}
+
+/* Item Display */
+.filter-sort {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.filter-sort input[type="text"],
+.filter-sort select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    flex: 1; /* Allows them to grow */
+}
+
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 20px;
+}
+
+.item-card {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.item-card h3 {
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.item-card p {
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
+
+.item-card .contact-info {
+    font-weight: bold;
+    color: #555;
+    margin-top: 10px;
+}
+
+#loadMoreFound {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background: #6c757d; /* Grey for secondary action */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+#loadMoreFound:hover {
+    background: #5a6268;
+}
+
+/* About Section */
+#about {
+    text-align: center;
+    padding: 40px;
+    background: #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1, header nav {
+        float: none;
+        text-align: center;
+    }
+
+    header nav ul {
+        padding-top: 10px;
+    }
+
+    header li {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .filter-sort {
+        flex-direction: column;
+    }
+}

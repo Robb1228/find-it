@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find It – Campus Lost & Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to static CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Simple site header -->
+    <header>
+        <div class="container">
+            <h1>Find It</h1>
+            <nav>
+                <ul>
+                    <li><a href="#report-lost">Report Lost Item</a></li>
+                    <li><a href="#found-items">View Found Items</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Dynamic page content -->
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Find It. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
