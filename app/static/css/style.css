@@ -59,7 +59,7 @@ header a:hover {
 
 /* Hero Section */
 #hero {
-    background: #5cb85c; /* Green color for positive feel */
+    background: #d9534f; /* Red color for positive feel */
     color: #fff;
     text-align: center;
     padding: 60px 0;
@@ -248,4 +248,47 @@ footer {
     .filter-sort {
         flex-direction: column;
     }
+}
+
+/* Flex layout for header NEWWWW */
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+/* Group nav and login */
+.nav-login-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Login Buttons */
+.login-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.login-buttons button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.login-buttons button:hover {
+    background: #0056b3;
+}
+
+/* Ensure nav looks right inside group */
+.nav-login-group nav ul {
+    display: flex;
+    gap: 15px;
+    list-style: none;
 }
