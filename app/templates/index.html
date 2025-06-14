@@ -7,6 +7,12 @@
     <section id="hero">
         <h2>Your Campus Lost & Found Solution</h2>
         <p>Help us reunite lost items with their owners on campus!</p>
+
+        <div class="test-buttons">
+            <button onclick="window.location.href='{{ url_for('routes.report_item') }}'"> Report Lost/Found (Dev Test)</button>
+            <button onclick="window.location.href='{{ url_for('routes.view_items') }}'"> View All Items (Dev Test)</button>
+        </div>
+
         <button id="scrollToReport">Report an Item</button>
     </section>
 

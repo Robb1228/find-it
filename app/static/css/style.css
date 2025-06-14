@@ -292,3 +292,82 @@ footer {
     gap: 15px;
     list-style: none;
 }
+
+
+/* Styles for the "Find It" text in the top right, makes it clickable to home page. Can be replaced with logo once we have it */
+.logo-link {
+    font-size: 2rem;        
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.logo-link:hover {
+    text-decoration: underline;
+}
+
+/* Styles for items page, shows all reported items */
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.item-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.item-search,
+.item-sort {
+  padding: 10px;
+  font-size: 1rem;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.item-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.item-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+  width: 280px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.item-title {
+  color: #007BFF;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.contact {
+  font-weight: bold;
+  color: #333;
+}
+
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.load-more {
+  padding: 10px 30px;
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

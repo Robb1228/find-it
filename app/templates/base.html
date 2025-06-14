@@ -1,41 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Find It – Campus Lost & Found</title>
+    <title>Find It | Campus Lost & Found</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Link to static CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
 
-    <!-- Site Header -->
+    <!-- Header -->
     <header>
         <div class="container header-flex">
-            <h1>Find It</h1>
-            
+            <h1><a href="{{ url_for('routes.index') }}" class="logo-link">Find It</a></h1>
+
             <div class="nav-login-group">
                 <nav>
                     <ul>
-                        <li><a href="#report-lost">Report Lost Item</a></li>
-                        <li><a href="#found-items">View Found Items</a></li>
-                        <li><a href="#about">About Us</a></li>
+                        <li><a href="{{ url_for('routes.index') }}">Home</a></li>
+                        <li><a href="{{ url_for('routes.report_item') }}">Report Lost Item</a></li>
+                        <li><a href="{{ url_for('routes.view_items') }}">Found Items</a></li>
                     </ul>
                 </nav>
 
                 <div class="login-buttons">
-                    <button onclick="window.location.href='/admin-login'">Admin Login</button>
-                    <button onclick="window.location.href='/user-login'">Login</button>
+                    {% if session.get('user_name') %}
+                    <span>Welcome, {{ session['user_name'] }}!</span>
+                    <button onclick="window.location.href='{{ url_for('routes.logout') }}'">Logout</button>
+                    {% else %}
+                    <button onclick="window.location.href='{{ url_for('routes.login') }}'">Login</button>
+                    <button onclick="window.location.href='{{ url_for('routes.register') }}'">Register</button>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Dynamic Page Content -->
-    {% block content %}{% endblock %}
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="container">
+        {% for category, message in messages %}
+        <div class="flash flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
 
-    <!-- Footer -->
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
     <footer>
         <div class="container">
             <p>&copy; 2025 Find It. All rights reserved.</p>
@@ -43,4 +59,5 @@
     </footer>
 
 </body>
+
 </html>

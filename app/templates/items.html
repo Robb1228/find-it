@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="section-title">Recently Found Items</h2>
+
+<div class="item-controls">
+  <input type="text" placeholder="Search items..." class="item-search">
+  <select class="item-sort">
+    <option value="newest">Newest First</option>
+    <option value="oldest">Oldest First</option>
+  </select>
+</div>
+
+<div class="item-grid">
+  {% for item in items %}
+  <div class="item-card">
+    <h3 class="item-title">{{ item.title }}</h3>
+    <p> <!-- Jinja syntax to make sure item is displayed properly-->
+  <strong>
+    {% if item.item_type == 'lost' %}
+      Lost Near:
+    {% else %}
+      Found At:
+    {% endif %}
+  </strong>
+  {{ item.location }}
+</p>
+    <p><strong>Description:</strong> {{ item.description }}</p>
+    <p><strong>Date Reported:</strong> {{ item.date_reported.strftime('%m/%d/%Y') }}</p>
+    <p><strong>Contact:</strong> <span class="contact">{{ item.contact_info }}</span></p>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- TODO: Add load-more functionality with JS & pagination -->
+
+<div class="load-more-container">
+  <button class="load-more">Load More</button>
+</div>
+
+{% endblock %}
