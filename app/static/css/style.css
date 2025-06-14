@@ -371,3 +371,13 @@ footer {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.lost-card {
+    background-color: #ffe6e6;
+    border-left: 5px solid red;
+}
+
+.found-card {
+    background-color: #e6ffe6;
+    border-left: 5px solid green;
+}

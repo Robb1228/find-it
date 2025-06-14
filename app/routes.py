@@ -66,12 +66,15 @@ def report_item():
         return redirect(url_for("routes.view_items"))
     return render_template("report.html", form=form)
 
-@routes.route("/items")
+@routes.route('/items')
 def view_items():
-    items = Item.query.order_by(Item.date_reported.desc()).all()
-    return render_template("items.html", items=items)
+    lost_items = Item.query.filter_by(item_type='lost').order_by(Item.date_reported.desc()).all()
+    found_items = Item.query.filter_by(item_type='found').order_by(Item.date_reported.desc()).all()
+    return render_template('items.html', lost_items=lost_items, found_items=found_items)
 
 @routes.route("/")
 def index():
     return render_template("index.html")
+
+
 

@@ -1,30 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2 class="section-title">Recently Found Items</h2>
-
-<div class="item-controls">
-  <input type="text" placeholder="Search items..." class="item-search">
-  <select class="item-sort">
-    <option value="newest">Newest First</option>
-    <option value="oldest">Oldest First</option>
-  </select>
-</div>
-
+<h2 class="section-title">Lost Items</h2>
 <div class="item-grid">
-  {% for item in items %}
-  <div class="item-card">
+  {% for item in lost_items %}
+  <div class="item-card lost-card">
     <h3 class="item-title">{{ item.title }}</h3>
-    <p> <!-- Jinja syntax to make sure item is displayed properly-->
-  <strong>
-    {% if item.item_type == 'lost' %}
-      Lost Near:
-    {% else %}
-      Found At:
-    {% endif %}
-  </strong>
-  {{ item.location }}
-</p>
+    <p><strong>Lost Near:</strong> {{ item.location }}</p>
     <p><strong>Description:</strong> {{ item.description }}</p>
     <p><strong>Date Reported:</strong> {{ item.date_reported.strftime('%m/%d/%Y') }}</p>
     <p><strong>Contact:</strong> <span class="contact">{{ item.contact_info }}</span></p>
@@ -32,7 +14,18 @@
   {% endfor %}
 </div>
 
-<!-- TODO: Add load-more functionality with JS & pagination -->
+<h2 class="section-title">Found Items</h2>
+<div class="item-grid">
+  {% for item in found_items %}
+  <div class="item-card found-card">
+    <h3 class="item-title">{{ item.title }}</h3>
+    <p><strong>Found At:</strong> {{ item.location }}</p>
+    <p><strong>Description:</strong> {{ item.description }}</p>
+    <p><strong>Date Reported:</strong> {{ item.date_reported.strftime('%m/%d/%Y') }}</p>
+    <p><strong>Contact:</strong> <span class="contact">{{ item.contact_info }}</span></p>
+  </div>
+  {% endfor %}
+</div>
 
 <div class="load-more-container">
   <button class="load-more">Load More</button>
