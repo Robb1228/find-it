@@ -1,13 +1,26 @@
-
-from flask import Blueprint, render_template, redirect, url_for, flash, session
+from flask import Blueprint, render_template, redirect, url_for, flash, session, request, abort
 from .forms import LoginForm, RegisterForm, ItemForm
 from .models import db, User, Item
 from werkzeug.security import generate_password_hash, check_password_hash
+from functools import wraps
+from datetime import datetime
 
 routes = Blueprint("routes", __name__)
 
+# Admin routes
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        user_id = session.get("user_id")
+        user = User.query.get(user_id)
+        if not user or not user.is_admin:
+            abort(403)
+        return f(*args, **kwargs)
+    return decorated_function
+
+# Routes 
 @routes.route("/")
-def home():
+def index():
     return render_template("index.html")
 
 @routes.route("/login", methods=["GET", "POST"])
@@ -18,8 +31,9 @@ def login():
         if user and check_password_hash(user.password_hash, form.password.data):
             session["user_id"] = user.user_id
             session["user_name"] = user.name
+            session["is_admin"] = user.is_admin
             flash("Login successful!", "success")
-            return redirect(url_for("routes.home"))
+            return redirect(url_for("routes.index"))
         flash("Invalid credentials", "danger")
     return render_template("login.html", form=form)
 
@@ -66,12 +80,48 @@ def report_item():
         return redirect(url_for("routes.view_items"))
     return render_template("report.html", form=form)
 
-@routes.route("/items")
+@routes.route('/items')
 def view_items():
-    items = Item.query.order_by(Item.date_reported.desc()).all()
-    return render_template("items.html", items=items)
+    lost_items = Item.query.filter_by(item_type='lost').order_by(Item.date_reported.desc()).all()
+    found_items = Item.query.filter_by(item_type='found').order_by(Item.date_reported.desc()).all()
+    return render_template('items.html', lost_items=lost_items, found_items=found_items)
 
-@routes.route("/")
-def index():
-    return render_template("index.html")
+# Admin Dashboard 
+@routes.route('/admin')
+@admin_required
+def admin_dashboard():
+    users = User.query.all()
+    items = Item.query.all()
+    return render_template('admin.html', users=users, items=items)
 
+@routes.route('/admin/toggle/<int:user_id>', methods=["POST"])
+@admin_required
+def toggle_admin(user_id):
+    user = User.query.get_or_404(user_id)
+    user.is_admin = not user.is_admin
+    db.session.commit()
+    flash("Admin role updated.", "success")
+    return redirect(url_for('routes.admin_dashboard'))
+
+@routes.route('/admin/delete/<int:item_id>', methods=["POST"])
+@admin_required
+def delete_item(item_id):
+    item = Item.query.get_or_404(item_id)
+    db.session.delete(item)
+    db.session.commit()
+    flash("Item deleted.", "info")
+    return redirect(url_for('routes.admin_dashboard'))
+
+@routes.route('/admin/edit/<int:item_id>', methods=["POST"])
+@admin_required
+def edit_item(item_id):
+    item = Item.query.get_or_404(item_id)
+
+    item.title = request.form['title']
+    item.item_type = request.form['item_type']
+    item.location = request.form['location']
+    item.description = request.form['description']
+
+    db.session.commit()
+    flash("Item updated successfully.", "success")
+    return redirect(url_for("routes.admin_dashboard"))
