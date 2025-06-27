@@ -1,6 +1,6 @@
 <a id="readme-top"></a>
-
-
+<body>
+  <html>
   <h1>FindIt – Campus Lost & Found Web Application</h1>
 
   <h2>About The Project</h2>
