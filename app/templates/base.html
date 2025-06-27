@@ -23,14 +23,20 @@
                         <li><a href="{{ url_for('routes.view_items') }}">Found Items</a></li>
                     </ul>
                 </nav>
-
-                <div class="login-buttons">
+                <div class="login-buttons" style="display: flex; flex-direction: column; align-items: flex-end;">
                     {% if session.get('user_name') %}
-                    <span>Welcome, {{ session['user_name'] }}!</span>
-                    <button onclick="window.location.href='{{ url_for('routes.logout') }}'">Logout</button>
+                    <span style="margin-bottom: 5px;">Welcome, {{ session['user_name'] }}!</span>
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="window.location.href='{{ url_for('routes.logout') }}'">Logout</button>
+                        {% if session.get('is_admin') %}
+                        <button onclick="window.location.href='{{ url_for('routes.admin_dashboard') }}'">Admin</button>
+                        {% endif %}
+                    </div>
                     {% else %}
-                    <button onclick="window.location.href='{{ url_for('routes.login') }}'">Login</button>
-                    <button onclick="window.location.href='{{ url_for('routes.register') }}'">Register</button>
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="window.location.href='{{ url_for('routes.login') }}'">Login</button>
+                        <button onclick="window.location.href='{{ url_for('routes.register') }}'">Register</button>
+                    </div>
                     {% endif %}
                 </div>
             </div>

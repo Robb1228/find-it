@@ -22,3 +22,11 @@ class ItemForm(FlaskForm):
     date_reported = DateField("Date", validators=[DataRequired()])
     location = StringField("Location", validators=[DataRequired()])
     submit = SubmitField("Submit")
+
+class EditItemForm(FlaskForm):
+    title = StringField("Item Title", validators=[DataRequired()])
+    item_type = SelectField("Type", choices=[('lost', 'Lost'), ('found', 'Found')], validators=[DataRequired()])
+    location = StringField("Location", validators=[DataRequired()])
+    description = TextAreaField("Description")
+    # date_reported = DateField("Date Reported", validators=[DataRequired()])
+    submit = SubmitField("Update Item")
