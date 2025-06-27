@@ -11,6 +11,7 @@
         <div class="test-buttons">
             <button onclick="window.location.href='{{ url_for('routes.report_item') }}'"> Report Item (Dev Test)</button>
             <button onclick="window.location.href='{{ url_for('routes.view_items') }}'"> View All Items (Dev Test)</button>
+            <button onclick="window.location.href='{{ url_for('code_of_conduct') }}'">Code of Conduct</button>
         </div>
     </section>
 
@@ -83,3 +84,4 @@
 
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 {% endblock %}
+
