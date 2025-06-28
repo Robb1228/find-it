@@ -126,7 +126,8 @@ def edit_item(item_id):
     flash("Item updated successfully.", "success")
     return redirect(url_for("routes.admin_dashboard"))
 
-@app.route('/code-of-conduct')
+@routes.route('/code-of-conduct')
 def code_of_conduct():
     return render_template('code_of_conduct.html')
+
 
