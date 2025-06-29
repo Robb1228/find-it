@@ -6,7 +6,31 @@
     <title>Find It | Campus Lost & Found</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
+<script>
+    // Highlight input on focus
+    document.querySelectorAll('.form-control').forEach(input => {
+        input.addEventListener('focus', () => {
+            input.style.borderColor = '#2980b9';
+            input.style.boxShadow = '0 0 5px rgba(41,128,185,0.5)';
+        });
+        input.addEventListener('blur', () => {
+            input.style.borderColor = '#ccc';
+            input.style.boxShadow = 'none';
+        });
+    });
+
+    // Click animation for button
+    document.querySelectorAll('.auth-button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.style.transform = 'scale(0.97)';
+            setTimeout(() => btn.style.transform = 'scale(1)', 150);
+        });
+    });
+</script>
+
 
 <body>
 
@@ -61,9 +85,11 @@
     {% endif %}
     {% endwith %}
 
-    <main class="container">
+
+    <main class="auth-main">
         {% block content %}{% endblock %}
     </main>
+
 
     <footer>
         <div class="container">
