@@ -6,14 +6,43 @@
     <title>Find It | Campus Lost & Found</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
+<script>
+    // Highlight input on focus
+    document.querySelectorAll('.form-control').forEach(input => {
+        input.addEventListener('focus', () => {
+            input.style.borderColor = '#2980b9';
+            input.style.boxShadow = '0 0 5px rgba(41,128,185,0.5)';
+        });
+        input.addEventListener('blur', () => {
+            input.style.borderColor = '#ccc';
+            input.style.boxShadow = 'none';
+        });
+    });
+
+    // Click animation for button
+    document.querySelectorAll('.auth-button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.style.transform = 'scale(0.97)';
+            setTimeout(() => btn.style.transform = 'scale(1)', 150);
+        });
+    });
+</script>
+
 
 <body>
 
     <!-- Header -->
     <header>
         <div class="container header-flex">
-            <h1><a href="{{ url_for('routes.index') }}" class="logo-link">Find It</a></h1>
+            <h1 class="logo">
+                <a href="{{ url_for('routes.index') }}" class="logo-link">
+                    <img src="{{ url_for('static', filename='images/findit-logo.png') }}" alt="Find It logo"
+                        style="height: 100px;">
+                </a>
+            </h1>
 
             <div class="nav-login-group">
                 <nav>
@@ -21,8 +50,10 @@
                         <li><a href="{{ url_for('routes.index') }}">Home</a></li>
                         <li><a href="{{ url_for('routes.report_item') }}">Report Item</a></li>
                         <li><a href="{{ url_for('routes.view_items') }}">Found Items</a></li>
+                        <li><a href="{{ url_for('routes.code_of_conduct') }}">Code Of Conduct</a></li>
                     </ul>
                 </nav>
+
                 <div class="login-buttons" style="display: flex; flex-direction: column; align-items: flex-end;">
                     {% if session.get('user_name') %}
                     <span style="margin-bottom: 5px;">Welcome, {{ session['user_name'] }}!</span>
@@ -54,9 +85,11 @@
     {% endif %}
     {% endwith %}
 
-    <main class="container">
+
+    <main class="auth-main">
         {% block content %}{% endblock %}
     </main>
+
 
     <footer>
         <div class="container">

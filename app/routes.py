@@ -125,3 +125,9 @@ def edit_item(item_id):
     db.session.commit()
     flash("Item updated successfully.", "success")
     return redirect(url_for("routes.admin_dashboard"))
+
+@routes.route('/code-of-conduct')
+def code_of_conduct():
+    return render_template('code_of_conduct.html')
+
+
