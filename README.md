@@ -2,7 +2,9 @@
 <body>
   <html>
   <h1>FindIt – Campus Lost & Found Web Application</h1>
-
+<div align="center">
+<img src="findit-logo.png" alt="FINDIT LOGO">
+</div>
   <h2>About The Project</h2>
   <p>
     <strong>FindIt</strong> acts as a centralized,digital solution to managing lost and Found Items.
