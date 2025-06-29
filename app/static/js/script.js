@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    
+
     const initialSort = [...foundItems].sort((a, b) => b.date - a.date);
     renderFoundItems(initialSort);
 
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    
+
     if (foundItemForm) {
         foundItemForm.addEventListener('submit', (e) => {
             e.preventDefault(); // Prevent default form submission
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    
+
     const applyFiltersAndSort = () => {
         let filteredItems = [...foundItems]; // Create a copy to manipulate
 
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderFoundItems(filteredItems);
     };
 
-        if (itemSearch) {
+    if (itemSearch) {
         itemSearch.addEventListener('input', applyFiltersAndSort);
     }
     if (sortItems) {

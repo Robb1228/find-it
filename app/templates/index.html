@@ -9,8 +9,10 @@
         <p>Help us reunite lost items with their owners on campus!</p>
 
         <div class="test-buttons">
-            <button onclick="window.location.href='{{ url_for('routes.report_item') }}'"> Report Item (Dev Test)</button>
-            <button onclick="window.location.href='{{ url_for('routes.view_items') }}'"> View All Items (Dev Test)</button>
+            <button onclick="window.location.href='{{ url_for('routes.report_item') }}'"> Report Item (Dev
+                Test)</button>
+            <button onclick="window.location.href='{{ url_for('routes.view_items') }}'"> View All Items (Dev
+                Test)</button>
             <button onclick="window.location.href='{{ url_for('routes.code_of_conduct') }}'">Code of Conduct</button>
         </div>
     </section>
@@ -78,10 +80,10 @@
 
     <section id="about">
         <h2>About Find It</h2>
-        <p>Find It is a community-driven platform designed to help students and staff on campus reunite with their lost belongings.</p>
+        <p>Find It is a community-driven platform designed to help students and staff on campus reunite with their lost
+            belongings.</p>
     </section>
 </main>
 
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 {% endblock %}
-
