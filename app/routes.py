@@ -130,4 +130,31 @@ def edit_item(item_id):
 def code_of_conduct():
     return render_template('code_of_conduct.html')
 
+from flask import render_template, request
+
+translations = {
+    'en': {
+        'home': 'Home',
+        'report_item': 'Report Item',
+        'found_items': 'Found Items',
+        'code_of_conduct': 'Code of Conduct',
+        'welcome': 'Welcome',
+        'all_rights': 'All rights reserved.'
+    },
+    'es': {
+        'home': 'Inicio',
+        'report_item': 'Reportar objeto',
+        'found_items': 'Objetos encontrados',
+        'code_of_conduct': 'Código de conducta',
+        'welcome': 'Bienvenido',
+        'all_rights': 'Todos los derechos reservados.'
+    }
+}
+
+@app.route('/')
+def index():
+    lang = request.args.get('lang', 'en')
+    t = translations.get(lang, translations['en'])
+    return render_template('index.html', t=t, lang=lang)
+
 
