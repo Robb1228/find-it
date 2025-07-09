@@ -4,6 +4,8 @@ from .models import db, User, Item
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from datetime import datetime
+from app import socketio
+from flask_socketio import emit
 
 routes = Blueprint("routes", __name__)
 
@@ -157,4 +159,15 @@ def index():
     t = translations.get(lang, translations['en'])
     return render_template('index.html', t=t, lang=lang)
 
+@routes.route('/chat')
+def chat():
+    if 'username' not in session:
+        return redirect(url_for('routes.login'))
+    return render_template('chat.html', username=session['username'])
 
+
+@socketio.on('message')
+def handle_message(msg):
+    username = session.get('userrname', 'Unknown')
+    full_msg = f"{username}: {msg}"
+    emit('message', full_msg, broadcast=True)
